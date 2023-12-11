@@ -14,7 +14,7 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
     <DockPanel LastChildFill="True">
@@ -23,7 +23,10 @@
                            PaneDisplayMode="Top"
                            SelectionChanged="NavView_OnSelectionChanged">
             <fa:NavigationView.MenuItems>
-                <fa:NavigationViewItem Content="Стартовая страница" Tag="{x:Type views:AppointmentView}" IsSelected="True" />
+                <fa:NavigationViewItem Content="Записи на консультации" Tag="{x:Type views:AppointmentView}"
+                                       IsSelected="True" />
+                <fa:NavigationViewItem Content="Владельцы" Tag="{x:Type views:OwnerView}" />
+                <fa:NavigationViewItem Content="Консультации" Tag="{x:Type views:ConsultationView}" />
             </fa:NavigationView.MenuItems>
             <Grid>
                 <fa:Frame Name="NavFrame" />

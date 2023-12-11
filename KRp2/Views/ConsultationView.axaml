@@ -1,17 +1,18 @@
 <rxui:ReactiveUserControl xmlns="https://github.com/avaloniaui"
-                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                                xmlns:rxui="http://reactiveui.net"
-                                xmlns:vm="clr-namespace:KR2.ViewModels"
-                                xmlns:m="clr-namespace:KR2.Models"
-                                x:DataType="vm:TableViewModelBase"
-                                x:TypeArguments="vm:TableViewModelBase"
-                                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                                x:Class="KR2.Views.AppointmentView">
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                          xmlns:rxui="http://reactiveui.net"
+                          xmlns:vm="clr-namespace:KR2.ViewModels"
+                          xmlns:m="clr-namespace:KR2.Models"
+                          x:DataType="vm:TableViewModelBase"
+                          x:TypeArguments="vm:TableViewModelBase"
+                          x:Class="KR2.Views.ConsultationView">
     <Design.DataContext>
-        <vm:TableViewModelBase x:TypeArguments="m:ConsultationAppointment"></vm:TableViewModelBase>
+        <vm:TableViewModelBase x:TypeArguments="m:Consultation" />
     </Design.DataContext>
+
     <DockPanel LastChildFill="True">
         <ScrollViewer HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top">
             <StackPanel Orientation="Horizontal" Spacing="5" Margin="8 16">
@@ -54,10 +55,13 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn IsVisible="False" Header="Все столбцы" />
                     <DataGridTextColumn Header="Код" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="ФИО" Binding="{Binding Owner.FullName}" />
-                    <DataGridTextColumn Header="Консультация" Binding="{Binding Consultation.Title}" />
+                    <DataGridTextColumn Header="Название" Binding="{Binding Title}" />
+                    <DataGridTextColumn Header="Дата"
+                                        Binding="{Binding Date, StringFormat='dd-MM-yyyy'}" />
+                    <DataGridTextColumn Header="Время" Binding="{Binding Time}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
     </DockPanel>
+
 </rxui:ReactiveUserControl>

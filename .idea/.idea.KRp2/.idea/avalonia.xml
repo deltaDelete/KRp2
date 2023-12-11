@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="KRp2/Views/AppointmentView.axaml" value="KRp2/KRp2.csproj" />
+        <entry key="KRp2/Views/ConsultationView.axaml" value="KRp2/KRp2.csproj" />
+        <entry key="KRp2/Views/MainWindow.axaml" value="KRp2/KRp2.csproj" />
+        <entry key="KRp2/Views/OwnerView.axaml" value="KRp2/KRp2.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

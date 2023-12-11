@@ -11,5 +11,10 @@ public class Consultation {
     
     [Precision(30, 2)]
     [Range(0, double.MaxValue)]
-    public decimal Price { get; set; }   
+    public decimal Price { get; set; }
+
+    [Required]
+    public DateTimeOffset Date { get; set; } = DateTimeOffset.Now;
+    [Required]
+    public TimeSpan Time { get; set; } = DateTimeOffset.Now.TimeOfDay;
 }

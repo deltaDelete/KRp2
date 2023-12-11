@@ -11,6 +11,8 @@ public class ConsultationAppointment {
     [ForeignKey(nameof(Consultation))]
     public int ConsultationId { get; set; }
 
+    [Required(ErrorMessage = "Заполните это поле")]
     public Owner? Owner { get; set; }
+    [Required(ErrorMessage = "Заполните это поле")]
     public Consultation? Consultation { get; set; }
 }
