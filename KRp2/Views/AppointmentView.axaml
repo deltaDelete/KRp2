@@ -1,0 +1,62 @@
+<reactiveUi:ReactiveUserControl x:TypeArguments="viewModels:TableViewModelBase" xmlns="https://github.com/avaloniaui"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:reactiveUi="http://reactiveui.net"
+                                xmlns:viewModels="clr-namespace:KR2.ViewModels"
+                                xmlns:models="clr-namespace:KR2.Models"
+                                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                                x:DataType="viewModels:TableViewModelBase"
+                                x:Class="KR2.Views.AppointmentView">
+    <Design.DataContext>
+        <viewModels:TableViewModelBase x:TypeArguments="models:ConsultationAppointment"></viewModels:TableViewModelBase>
+    </Design.DataContext>
+    <DockPanel LastChildFill="True">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" Spacing="5" Margin="8 16">
+                <TextBox MinWidth="256" Text="{Binding SearchQuery, Mode=TwoWay}" />
+                <ComboBox SelectedIndex="{Binding SelectedSearchColumn}" ItemsSource="{Binding #Table.Columns}"
+                          DisplayMemberBinding="{Binding Header}" />
+                <CheckBox IsChecked="{Binding IsSortByDescending}">Сортировка по убыванию</CheckBox>
+                <Button Content="Создать" Command="{Binding NewItemCommand}" />
+                <Button Content="Изменить" Command="{Binding EditItemCommand}" />
+                <Button Content="Удалить" Command="{Binding RemoveItemCommand}" />
+                <Button Content="Обновить" Command="{Binding ReloadCommand}" />
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="5"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Horizontal" Spacing="5" DockPanel.Dock="Bottom" HorizontalAlignment="Center"
+                        Margin="10">
+                <Button Content="В начало" Command="{Binding TakeFirstCommand}" />
+                <Button Content="Назад" Command="{Binding TakePrevCommand}" />
+                <TextBlock VerticalAlignment="Center">
+                    <Run Text="{Binding CurrentPage}" />
+                    <Run Text="/" />
+                    <Run Text="{Binding TotalPages}" />
+                </TextBlock>
+                <Button Content="Вперед" Command="{Binding TakeNextCommand}" />
+                <Button Content="В конец" Command="{Binding TakeLastCommand}" />
+            </StackPanel>
+        </StackPanel>
+        <Grid>
+            <ProgressBar IsIndeterminate="True" IsVisible="{Binding IsLoading}" HorizontalAlignment="Center"
+                         VerticalAlignment="Center" />
+            <DataGrid ItemsSource="{Binding Items}"
+                      SelectedItem="{Binding SelectedRow}"
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="True"
+                      CanUserSortColumns="True"
+                      Name="Table"
+                      IsReadOnly="True"
+                      x:CompileBindings="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsVisible="False" Header="Все столбцы" />
+                    <DataGridTextColumn Header="Код" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="ФИО" Binding="{Binding Owner.FullName, StringFormat='dd.MM.yyyy'}" />
+                    <DataGridTextColumn Header="Консультация" Binding="{Binding Consultation.Title}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</reactiveUi:ReactiveUserControl>
